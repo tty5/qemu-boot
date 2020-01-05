@@ -7,4 +7,4 @@
 
 cu -l /dev/pts/0
 
-qemu-system-x86_64 -enable-kvm -nographic -serial mon:pty -smp 4 -m 32000 -drive file=CentOS-7-x86_64-GenericCloud-1905.qcow2,if=virtio #-kernel bzImage -append 'root=/dev/vda console=ttyS0,115200'
+qemu-system-x86_64 -enable-kvm -nographic -serial mon:pty -smp 4 -m 32000 -drive file=CentOS-7-x86_64-GenericCloud-1905.qcow2,if=virtio #-kernel bzImage -append 'root=/dev/vda console=ttyS0,115200 nokaslr'

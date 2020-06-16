@@ -12,7 +12,7 @@ qemu-system-x86_64 -enable-kvm -vnc :2  -smp 16 -m 32000 -vga qxl -usbdevice tab
 
 cu -l /dev/pts/0
 
-qemu-system-x86_64 -enable-kvm -nographic -serial mon:pty -smp 4 -m 32000 -drive file=CentOS-7-x86_64-GenericCloud-1905.qcow2,if=virtio -s -redir tcp:52::22 #-kernel bzImage -append 'root=/dev/vda console=ttyS0,115200 nokaslr'
+qemu-system-x86_64 -enable-kvm -nographic -serial mon:pty -smp 4 -m 32000 -drive file=CentOS-7-x86_64-GenericCloud-1905.qcow2,if=virtio -s -nic user,hostfwd=tcp::52-:22 #-kernel bzImage -append 'root=/dev/vda console=ttyS0,115200 nokaslr'
 
 gdb vmlinux -ex 'target remote :1234'
 

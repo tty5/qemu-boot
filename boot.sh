@@ -13,10 +13,10 @@ qemu-system-x86_64 -enable-kvm -vnc :2  -smp 16 -m 32000 -vga qxl -usbdevice tab
 
 cu -l /dev/pts/0
 
-/usr/libexec/qemu-kvm -enable-kvm -nographic -serial mon:telnet::4444,server -smp 4 -m 8G -drive file=Fedora-Cloud-Base-32-1.6.x86_64.qcow2,if=virtio -s -nic user,hostfwd=tcp::52-:22 #-kernel bzImage -append 'root=/dev/vda console=ttyS0,115200 nokaslr debug'
+/usr/libexec/qemu-kvm -enable-kvm -nographic -serial mon:tcp::4444,server,wait=off -smp 4 -m 8G -drive file=Fedora-Cloud-Base-32-1.6.x86_64.qcow2,if=virtio -s -nic user,hostfwd=tcp::52-:22 #-kernel bzImage -append 'root=/dev/vda console=ttyS0,115200 nokaslr debug'
 
 
-/usr/libexec/qemu-kvm -enable-kvm -nographic -serial mon:telnet::4444,server -device vhost-vsock-pci,id=vhost-vsock-pci0,guest-cid=3 -smp 4 -m 8G -drive file=Fedora-Cloud-Base-32-1.6.x86_64.qcow2,if=virtio -s -nic user,hostfwd=tcp::52-:22 #-kernel bzImage -append 'root=/dev/vda console=ttyS0,115200 nokaslr debug'
+/usr/libexec/qemu-kvm -enable-kvm -nographic -serial mon:tcp::4444,server,wait=off -device vhost-vsock-pci,id=vhost-vsock-pci0,guest-cid=3 -smp 4 -m 8G -drive file=Fedora-Cloud-Base-32-1.6.x86_64.qcow2,if=virtio -s -nic user,hostfwd=tcp::52-:22 #-kernel bzImage -append 'root=/dev/vda console=ttyS0,115200 nokaslr debug'
 
 gdb vmlinux -ex 'target remote :1234'
 

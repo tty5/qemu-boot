@@ -19,7 +19,7 @@ cu -l /dev/pts/0
 
 /usr/libexec/qemu-kvm -enable-kvm -nographic -serial mon:tcp::4444,server,wait=off -device vhost-vsock-pci,id=vhost-vsock-pci0,guest-cid=3 -smp 4 -m 8G -drive file=Fedora-Cloud-Base-32-1.6.x86_64.qcow2,if=virtio -s -nic user,hostfwd=tcp::52-:22 #-kernel bzImage -append 'root=/dev/vda console=ttyS0,115200 nokaslr debug'
 
-# net bridge -net nic,macaddr=52:54:00:12:34:61 -net bridge,br=br0
+# net bridge -net nic,model=virtio-net-pci,macaddr=52:54:00:12:34:61 -net bridge,br=br0
 
 gdb vmlinux -ex 'target remote :1234'
 
